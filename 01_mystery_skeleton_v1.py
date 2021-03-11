@@ -1,5 +1,5 @@
 from tkinter import *
-from functions import partial   # To prevent unwanted windows
+from functools import partial   # To prevent unwanted windows
 import random
 
 
@@ -77,11 +77,17 @@ class Game:
             # for testing purposes, just add 2
             current_balance += 2
 
+            # set balance to adjusted balabce
+            self.balance.set(current_balance)
+
+            # edit label so user can see their balance
+            self.balance_label.configure(text="Balance: {}".format(current_balance))
+
 
 
 # main routine
 if __name__ == "__main__":
     root = Tk()
     root.title("title goes here")
-    something = Foo(root)
+    something = Start(root)
     root.mainloop()
