@@ -36,13 +36,13 @@ class Start:
         button_font = "Arial 12 bold"
         # orange low stakes button...
         self.low_stakes_button = Button(self.stakes_frame, text="Low ($5)",
-                                       command=lambda: self.to_game(1),
+                                       comand=lambda: self.to_game(1),
                                        font=button_font, bg="#FF9933")
         self.low_stakes_button.grid(row=0, column=0, pady=10)
 
         # yellow medium stakes button...
         self.low_stakes_button = Button(self.stakes_frame, text="Medium ($10",
-                                       comman=lambda: self.to_game(2),
+                                       command=lambda: self.to_game(2),
                                        font=button_font, bg="#FFFF33")
         self.low_stakes_button.grid(row=0, column=1, pady=10)
 
@@ -59,8 +59,47 @@ class Start:
 
     def to_game(self, stakes):
         starting_balance = self.start_amount_entry.get()
-        Game(self, stakes, starting_balance)
 
+        # set error background colours (and assume that there are no errors at the start...
+        error_back = "#ffafaf"
+        has_errors = "no"
+
+        # change background to white for testing purposes...
+        self.start_amount_entry.config(bg="white")
+        self.start_amount_entry_label.config(text="")
+
+        try:
+            starting_balance = int(starting_balance)
+
+            if starting_balance < 5:
+                has_errors = "yes"
+                error_feedback = "Sorry, the last you " \
+                                 "can play with is $5"
+            elif starting_balance > 50:
+                has_errors = "yes"
+                error_feedback = "Too high! The most you can risk in " \
+                                 "this game is $50"
+            elif starting_balance < 10 and (stakes == 2 or stakes == 3):
+                has_errors = "yes"
+                error_feedback = "Sorry, you can only afford to " \
+                                 "play a low stakes game."
+            elif starting_balance < 15 and stakes == 3:
+                has_errors = "yes"
+                error_feedback = "Sorry, you can only afford to " \
+                                 "play a low or medium stakes game."
+
+        except ValueError:
+            has_errors = "yes"
+            error_feedback = "Please enter a dollar amount (no text / decimals)"
+
+        if has_errors == "yes":
+            self.start_amount_entry.config(bg=error_back)
+            self.amount_error_label.config(text=error_feedback)
+        else:
+            Game(self, stakes, starting_balance)
+
+            # hide start up window
+            # root.withdraw()
 
 class Game:
     def __init__(self, partner, stakes, starting_balance):
