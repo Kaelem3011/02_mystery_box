@@ -1,3 +1,5 @@
+# v3, stakes buttons only enabled if there are sufficient funds
+
 from tkinter import *
 from functools import partial  # To prevent unwanted windows
 import random
@@ -26,6 +28,12 @@ class Start:
 
         self.amount_error_label = Label(self.start_frame, font="Arial 10", text="", fg="red")
         self.amount_error_label.grid(row=2)
+
+        # entry box, button & error label (row 2)
+        self.entry_error_frame = Frame(self.start_frame, width=200)
+        self.entry_error_frame.grid(row=2)
+
+
 
         # entry box (row 2)
         self.start_amount_entry = Entry(self.start_frame, font="Arial 19 bold")
