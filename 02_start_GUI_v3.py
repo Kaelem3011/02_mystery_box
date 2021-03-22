@@ -26,18 +26,17 @@ class Start:
                                           wrap=275, justify=LEFT, padx=10, pady=10)
         self.mystery_instructions.grid(row=1)
 
-        self.amount_error_label = Label(self.start_frame, font="Arial 10", text="", fg="red")
-        self.amount_error_label.grid(row=2)
-
         # entry box, button & error label (row 2)
         self.entry_error_frame = Frame(self.start_frame, width=200)
         self.entry_error_frame.grid(row=2)
 
+        self.start_amount_entry = Entry(self.entry_error_frame, font="Arial 19 bold", width=10)
+        self.start_amount_entry.grid(row=0, column=0)
 
+        self.add_funds_button = Button(self.entry_error_frame, font="Arial 14 bold", text="Add Funds", command=self.check_funds)
+        self.add_funds_button.grid(row=0, column=1)
 
-        # entry box (row 2)
-        self.start_amount_entry = Entry(self.start_frame, font="Arial 19 bold")
-        self.start_amount_entry.grid(row=3)
+        self.amount_error_label = Label(self.entry_error_frame, fg="maroon", text="", font="Arial 10 bold") /////////////////////////////////////////////////////////////////////////////////////////////
 
         # button frame (row 3)
         self.stakes_frame = Frame(self.start_frame)
