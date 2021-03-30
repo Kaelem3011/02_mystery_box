@@ -18,20 +18,16 @@ for item in range(0, NUM_TRIALS):
     for thing in range(0, 3):
 
         # randint finds number between given endpoints, including both endpoints
-        prize_num = random.randint(1, 4)
+        prize_num = random.randint(1, 100)
         # prize += " "
-        if prize_num == 1:
-            # prize += "gold"
-            round_winnings += gold
-        elif prize_num == 2:
-            # prize += "silver"
-            round_winnings += silver
-        elif prize_num == 3:
-            # prize += "copper"
-            round_winnings += copper
-        else:
-            # prize += "lead"
-            round_winnings += lead
+        if 0 < prize_num <= 5:
+            round_winnings += 5
+        elif 5 < prize_num <= 25:
+            round_winnings += 2
+        elif 25 < prize_num <= 65:
+            round_winnings += 1
+        '''else:
+            round_winnings += lead'''
 
     winnings += round_winnings
 

@@ -1,5 +1,6 @@
-import random
+# edited odds, increased trials and just showed stats.
 
+import random
 
 NUM_TRIALS = 100
 winnings = 0
@@ -18,20 +19,22 @@ for item in range(0, NUM_TRIALS):
     for thing in range(0, 3):
 
         # randint finds number between given endpoints, including both endpoints
-        prize_num = random.randint(1, 4)
+        prize_num = random.randint(1, 10)
         # prize += " "
         if prize_num == 1:
+            # one in ten chance of getting gold
             # prize += "gold"
-            round_winnings += gold
-        elif prize_num == 2:
+            round_winnings += 5
+        elif 1 < prize_num <= 3:
+            # get silver if it's a 2 or 3
             # prize += "silver"
-            round_winnings += silver
-        elif prize_num == 3:
+            round_winnings += 2
+        elif 3 < prize_num <= 7:
+            # copper if its 4, 5, 6, 7 <40% chance of copper>
             # prize += "copper"
-            round_winnings += copper
-        else:
-            # prize += "lead"
-            round_winnings += lead
+            round_winnings += 1
+        '''else:
+            round_winnings += lead'''
 
     winnings += round_winnings
 
